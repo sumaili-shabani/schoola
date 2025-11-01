@@ -1,37 +1,51 @@
-import { useState, useMemo } from "react";
+import { useMemo } from 'react';
 
-/**
- * 📄 Hook de pagination universelle
- * - Fonctionne avec données locales OU backend paginé
- * - Renvoie les éléments de la page courante et les infos de navigation
- */
+type PaginationRange = (number | string)[];
 
-export const usePagination = <T>(data: T[], itemsPerPage = 10) => {
-    const [currentPage, setCurrentPage] = useState(1);
+interface UsePaginationProps {
+    currentPage: number;
+    totalPages: number;
+    maxButtons?: number;
+}
 
-    const totalPages = Math.ceil(data.length / itemsPerPage);
+export const usePagination = ({
+    currentPage,
+    totalPages,
+    maxButtons = 7, // nombre max de boutons visibles dans la pagination
+}: UsePaginationProps) => {
+    const paginationRange: PaginationRange = useMemo(() => {
+        const halfMax = Math.floor(maxButtons / 2);
 
-    const currentData = useMemo(() => {
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        return data.slice(start, end);
-    }, [data, currentPage, itemsPerPage]);
+        if (totalPages <= maxButtons) {
+            return Array.from({ length: totalPages }, (_, i) => i + 1);
+        }
 
-    const nextPage = () => setCurrentPage((p) => Math.min(p + 1, totalPages));
-    const prevPage = () => setCurrentPage((p) => Math.max(p - 1, 1));
-    const goToPage = (page: number) => {
-        if (page >= 1 && page <= totalPages) setCurrentPage(page);
-    };
+        if (currentPage <= halfMax + 1) {
+            const start = Array.from({ length: maxButtons - 2 }, (_, i) => i + 1);
+            return [...start, '...', totalPages];
+        }
+
+        if (currentPage >= totalPages - halfMax) {
+            const end = Array.from({ length: maxButtons - 2 }, (_, i) => totalPages - (maxButtons - 3) + i);
+            return [1, '...', ...end];
+        }
+
+        const middle = Array.from(
+            { length: maxButtons - 4 },
+            (_, i) => currentPage - Math.floor((maxButtons - 4) / 2) + i
+        );
+
+        return [1, '...', ...middle, '...', totalPages];
+    }, [currentPage, totalPages, maxButtons]);
+
+    const isCurrentPage = (page: number) => page === currentPage;
+    const isFirstPage = currentPage === 1;
+    const isLastPage = currentPage === totalPages;
 
     return {
-        currentData,
-        currentPage,
-        totalPages,
-        nextPage,
-        prevPage,
-        goToPage,
-        setCurrentPage,
+        paginationRange,
+        isCurrentPage,
+        isFirstPage,
+        isLastPage,
     };
 };
-
-export default usePagination;

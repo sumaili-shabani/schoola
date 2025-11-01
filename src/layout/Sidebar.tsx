@@ -4,9 +4,11 @@ import { hasRole } from "../auth/permissions";
 import { MENU, MenuItem } from "./menu";
 import { useMemo } from "react";
 import SidebarBrand from "./SidebarBrand";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Sidebar() {
     const { user } = useAuth();
+    const { theme } = useTheme();
 
     // ✅ on typpe explicitement la fonction récursive
     const filteredMenu = useMemo<MenuItem[]>(() => {

@@ -37,7 +37,7 @@ export default function SidebarBrand() {
                             : logoFull}
                         alt="Logo Schoola"
                         style={{
-                            height: collapsed ? "50px" : "120px",
+                            height: collapsed ? "50px" : "80px",
                             width: "auto",
                             transition: "all 0.3s ease",
                             filter: "brightness(1.1)",

@@ -4,10 +4,13 @@ import { useEffect } from "react";
 import { API_CONFIG } from "../api/config";
 
 import { useSidebar } from "../context/SidebarContext";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Topbar() {
     const { user, logout } = useAuth();
     const { collapsed, toggle } = useSidebar();
+
+    const { theme, toggleTheme } = useTheme();
 
     // ⚡️ recharger les icônes Feather
     useEffect(() => {
@@ -15,7 +18,8 @@ export default function Topbar() {
     });
 
     return (
-        <nav className="navbar navbar-expand navbar-light navbar-bg">
+        <nav className={`navbar navbar-expand navbar-light border-bottom shadow-sm ${theme === "dark" ? "bg-dark navbar-dark" : "bg-white navbar-light"
+            }`}>
             {/* ☰ Bouton toggle sidebar */}
             <a className="sidebar-toggle js-sidebar-toggle" onClick={(e) => { e.preventDefault(); toggle(); }} href="#">
                 <i className="hamburger align-self-center"></i>
@@ -35,6 +39,35 @@ export default function Topbar() {
                     </button>
                 </div>
             </form>
+
+
+            {/* === RIGHT SECTION === */}
+            <div className="d-flex align-items-center gap-3">
+                {/* 🔹 Bouton bascule du thème */}
+                <button
+                    onClick={toggleTheme}
+                    className={`btn btn-sm rounded-circle shadow-sm ${theme === "dark"
+                        ? "btn-outline-light border-light"
+                        : "btn-outline-secondary border-secondary"
+                        }`}
+                    title={`Basculer en mode ${theme === "light" ? "sombre" : "clair"}`}
+                    style={{
+                        width: "36px",
+                        height: "36px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "all 0.3s ease-in-out",
+                    }}
+                >
+                    {theme === "light" ? (
+                        <i className="fas fa-moon text-dark"></i>
+                    ) : (
+                        <i className="fas fa-sun text-warning"></i>
+                    )}
+                </button>
+
+            </div>
 
             <div className="navbar-collapse collapse">
                 <ul className="navbar-nav navbar-align">

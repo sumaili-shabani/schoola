@@ -5,10 +5,13 @@ import Topbar from "./Topbar";
 import { initAppKit } from "../utils/initAppKit";
 import { initAdminKit } from "../utils/initAdminKit";
 import { SidebarProvider, useSidebar } from "../context/SidebarContext";
+import { ToastContainer } from "react-toastify";
+import { useTheme } from "../context/ThemeContext";
 
 
 function LayoutInner() {
     const { collapsed } = useSidebar();
+    const { theme } = useTheme();
 
     // (ré)applique Feather après chaque rendu
     useEffect(() => {
@@ -17,8 +20,14 @@ function LayoutInner() {
     });
 
     return (
-        <div className="wrapper">
-            <nav id="sidebar" className={`sidebar js-sidebar${collapsed ? " collapsed" : ""}`}>
+        <div className={`wrapper d-flex theme-${theme}`}>
+            <nav id="sidebar"
+                className={`sidebar js-sidebar${collapsed ? " collapsed" : ""} ${theme === "dark" ? "bg-dark text-light border-end border-secondary" : "bg-white border-end"
+                    }`}
+                style={{
+                    transition: "all 0.3s ease",
+                    minHeight: "100vh",
+                }}>
                 <Sidebar />
             </nav>
 
@@ -55,6 +64,17 @@ export default function AdminLayout() {
     return (
         <SidebarProvider>
             <LayoutInner />
+
+            {/* ✅ Le container des toasts */}
+            <ToastContainer
+                position="top-right"
+                autoClose={2500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnHover
+                draggable
+            />
         </SidebarProvider>
     );
 }
