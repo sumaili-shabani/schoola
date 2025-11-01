@@ -1,0 +1,21 @@
+{
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "roles": "Roles",
+    "school": "School",
+    "students": "Students",
+    "inscriptions": "Enrollments",
+    "payments": "Payments",
+    "classes": "Classes",
+    "sections": "Sections",
+    "options": "Options",
+    "finances": "Finances",
+    "sales": "Sales",
+    "treasury": "Treasury",
+    "geography": "Geography",
+    "countries": "Countries",
+    "provinces": "Provinces",
+    "cities": "Cities",
+    "communes": "Districts",
+    "logout": "Logout"
+}

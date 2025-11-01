@@ -1,0 +1,21 @@
+{
+    "dashboard": "Tableau de bord",
+    "users": "Utilisateurs",
+    "roles": "Rôles",
+    "school": "École",
+    "students": "Élèves",
+    "inscriptions": "Inscriptions",
+    "payments": "Paiements",
+    "classes": "Classes",
+    "sections": "Sections",
+    "options": "Options",
+    "finances": "Finances",
+    "sales": "Ventes",
+    "treasury": "Trésorerie",
+    "geography": "Géographie",
+    "countries": "Pays",
+    "provinces": "Provinces",
+    "cities": "Villes",
+    "communes": "Communes",
+    "logout": "Se déconnecter"
+}

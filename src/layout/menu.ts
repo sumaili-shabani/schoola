@@ -1,0 +1,149 @@
+import { ROLES, RoleId } from "../auth/permissions";
+
+export type MenuItem = {
+    label: string;
+    icon?: string; // icons 'feather'
+    to?: string;
+    children?: MenuItem[];
+    roles?: RoleId[];
+};
+
+export const MENU: MenuItem[] = [
+    {
+        label: "Tableau de bord",
+        icon: "activity",
+        to: "/",
+    },
+
+    // 🏫 GESTION SCOLAIRE
+    {
+        label: "École & Élèves",
+        icon: "book-open",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.SECRETAIRE],
+        children: [
+            { label: "Élèves", to: "/ecole/eleves" },
+            { label: "Inscriptions", to: "/ecole/inscriptions" },
+            { label: "Parents d’élèves", to: "/ecole/parents" },
+            {
+                label: "Paramétrages",
+                children: [
+                    { label: "Années scolaires", to: "/ecole/annees" },
+                    { label: "Sections & Options", to: "/ecole/sections" },
+                    { label: "Classes", to: "/ecole/classes" },
+                    { label: "Matières", to: "/ecole/matieres" },
+                    { label: "Horaires & emplois du temps", to: "/ecole/horaires" },
+                ],
+            },
+        ],
+    },
+
+    // 🧑‍🏫 ENSEIGNEMENT
+    {
+        label: "Enseignement",
+        icon: "layers",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.ENSEIGNANT],
+        children: [
+            { label: "Cours & Devoirs", to: "/enseignement/cours" },
+            { label: "Planification", to: "/enseignement/planifications" },
+            { label: "Évaluations", to: "/enseignement/evaluations" },
+            {
+                label: "Résultats & Bulletins",
+                children: [
+                    { label: "Saisie des notes", to: "/resultats/notes" },
+                    { label: "Bulletins scolaires", to: "/resultats/bulletins" },
+                    { label: "Palmarès", to: "/resultats/palmares" },
+                ],
+            },
+        ],
+    },
+
+    // 💳 FINANCES
+    {
+        label: "Trésorerie & Finances",
+        icon: "credit-card",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER],
+        children: [
+            { label: "Recettes", to: "/tresorerie/recettes" },
+            { label: "Dépenses", to: "/tresorerie/depenses" },
+            { label: "Caisse du jour", to: "/tresorerie/caisse-jour" },
+            {
+                label: "Rapports & Statistiques",
+                children: [
+                    { label: "Rapport mensuel", to: "/tresorerie/rapports/mensuels" },
+                    { label: "Rapport annuel", to: "/tresorerie/rapports/annuels" },
+                    { label: "Analyse financière", to: "/tresorerie/analyse" },
+                ],
+            },
+        ],
+    },
+
+    // 🧾 COMPTABILITÉ
+    {
+        label: "Comptabilité",
+        icon: "dollar-sign",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+        children: [
+            { label: "Paiements élèves", to: "/compta/paiements" },
+            { label: "Dépenses générales", to: "/compta/depenses" },
+            { label: "Budgets & prévisions", to: "/compta/budgets" },
+            { label: "Recouvrement forcé", to: "/compta/recouvrement" },
+        ],
+    },
+
+    // 📅 PRÉSENCE ET DISCIPLINE
+    {
+        label: "Présences & Discipline",
+        icon: "calendar",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.ENSEIGNANT, ROLES.SECRETAIRE],
+        children: [
+            { label: "Feuilles de présence", to: "/presences/liste" },
+            { label: "QR Code de pointage", to: "/presences/qrcode" },
+            { label: "Discipline & Retards", to: "/presences/discipline" },
+        ],
+    },
+
+    // 💬 COMMUNICATION
+    {
+        label: "Communication",
+        icon: "message-circle",
+        children: [
+            { label: "Messagerie interne", to: "/messages/inbox" },
+            { label: "Nouveau message", to: "/messages/new" },
+            { label: "Communiqués & annonces", to: "/messages/annonces" },
+            { label: "Alertes urgentes", to: "/messages/alertes" },
+        ],
+    },
+
+    // 👥 UTILISATEURS & SÉCURITÉ
+    {
+        label: "Utilisateurs & Accès",
+        icon: "users",
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
+        children: [
+            { label: "Utilisateurs", to: "/users" },
+            { label: "Rôles & permissions", to: "/roles" },
+            {
+                label: "Journal & Sécurité",
+                children: [
+                    { label: "Journal des connexions", to: "/security/logins" },
+                    { label: "Tentatives échouées", to: "/security/fails" },
+                    { label: "Historique d’actions", to: "/security/actions" },
+                ],
+            },
+        ],
+    },
+
+    // 🌍 GÉOGRAPHIE ET PARAMÈTRES AVANCÉS
+    {
+        label: "Système & Configuration",
+        icon: "settings",
+        roles: [ROLES.SUPER_ADMIN],
+        children: [
+            { label: "Pays & Provinces", to: "/geo/pays" },
+            { label: "Villes & Communes", to: "/geo/villes" },
+            { label: "Établissements", to: "/system/ecoles" },
+            { label: "Sauvegardes", to: "/system/backup" },
+            { label: "Logs système", to: "/system/logs" },
+        ],
+    },
+];
