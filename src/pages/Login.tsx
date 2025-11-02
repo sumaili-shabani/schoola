@@ -44,11 +44,15 @@ export default function Login() {
             if (result?.success) {
                 showSuccessMessage(result.message || "Connexion réussie !");
                 // Petite pause pour afficher le toast avant redirection
+                setLoading(false);
                 setTimeout(() => navigate("/", { replace: true }), 800);
             } else {
+               
                 showErrorMessage(result?.message || "Identifiants incorrects.");
+                setLoading(false);
             }
         } catch (error) {
+            setLoading(false);
             console.error("Erreur de connexion:", error);
             showErrorMessage("Une erreur est survenue. Veuillez réessayer.");
         } finally {

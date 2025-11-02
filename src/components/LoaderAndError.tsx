@@ -9,14 +9,7 @@ interface LoaderAndErrorProps {
 const LoaderAndError: React.FC<LoaderAndErrorProps> = ({ loading, error, onClearError }) => {
     return (
         <>
-            {loading && (
-                <div className="text-center mb-3">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Chargement...</span>
-                    </div>
-                </div>
-            )}
-
+            
             {error && (
                 <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     {error}

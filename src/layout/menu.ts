@@ -122,6 +122,7 @@ export const MENU: MenuItem[] = [
         children: [
             { label: "Utilisateurs", to: "/users" },
             { label: "Rôles & permissions", to: "/roles" },
+            { label: "Configuration système", to: "/systeme" },
             {
                 label: "Journal & Sécurité",
                 children: [

@@ -5,6 +5,7 @@ import { API_CONFIG } from "../api/config";
 
 import { useSidebar } from "../context/SidebarContext";
 import { useTheme } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
     const { user, logout } = useAuth();
@@ -26,7 +27,7 @@ export default function Topbar() {
             </a>
 
             {/* --- Champ de recherche --- */}
-            <form className="d-none d-sm-inline-block">
+            <form className="d-none d-sm-inline-block me-2">
                 <div className="input-group input-group-navbar">
                     <input
                         type="text"
@@ -166,9 +167,9 @@ export default function Topbar() {
                                 {user?.name || "Utilisateur"}
                             </span>
                             <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#"><i className="align-middle me-1" data-feather="settings"></i> Paramètres</a>
-                            <a className="dropdown-item" href="#"><i className="align-middle me-1" data-feather="mail"></i> Messagerie</a>
-                            <a className="dropdown-item" href="#"><i className="align-middle me-1" data-feather="calendar"></i> Calendrier</a>
+                            <Link className="dropdown-item" to="/profil"><i className="align-middle me-1" data-feather="settings"></i> Paramètres</Link>
+                            <Link className="dropdown-item" to="#"><i className="align-middle me-1" data-feather="mail"></i> Messagerie</Link>
+                            <Link className="dropdown-item" to="#"><i className="align-middle me-1" data-feather="calendar"></i> Calendrier</Link>
                             <div className="dropdown-divider"></div>
                             <button className="dropdown-item" onClick={logout}>
                                 <i className="align-middle me-1" data-feather="log-out"></i> Déconnexion

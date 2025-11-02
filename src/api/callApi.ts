@@ -95,17 +95,13 @@ export const callApi = async <T>(
 // =============================================================
 // 🧩 MÉTHODES CRUD GÉNÉRIQUES
 // =============================================================
-interface ApiListParams {
-    query?: string;
-    page: number;
-    limit: number;
-}
+
 // 🔹 Récupérer tous les éléments (liste paginée ou non)
 
-export const fetchItems2 = async <T>(endpoint: string, params: ApiListParams) => {
+export const fetchItems2 = async <T>(endpoint: string, id: number) => {
     try {
-        const res = await api.get(endpoint, { params });
-        return res.data;
+        const res = await api.get(`${endpoint}/${id}`);
+        return res.data.data;
     } catch (err: any) {
         showErrorMessage("Erreur de chargement " + err);
         throw err;
@@ -146,6 +142,21 @@ export const fetchSigleItem = async <T>(url: string, id: number | string): Promi
 export const saveItem = async <T>(url: string, data: any): Promise<T> => {
     const response = await api.post(url, data);
     return response.data.data;
+};
+
+
+// 🔹 Ajouter ou mettre à jour un élément d'un fichier
+export const saveItemImageForm = async <T>(endpoint: string, data: FormData) => {
+    try {
+        const res = await api.post(endpoint, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return res.data;
+    } catch (err: any) {
+        throw err;
+    }
 };
 
 // 🔹 Supprimer un élément

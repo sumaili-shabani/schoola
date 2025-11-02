@@ -3,6 +3,7 @@ import { fetchItems, saveItem, removeItem, extractTime, formatDateFR, showConfir
 import { usePagination } from "../../hooks/usePagination";
 import { LoaderAndError, Modal, Pagination, TextField } from "../../components";
 import { showErrorMessage, showSuccessMessage, showWarningMessage } from "../../api/config";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 
 
@@ -76,19 +77,23 @@ export default function RolePage() {
   // ✅ Édition
   const handleEdit = async (id: number) => {
     try {
-
+setLoading(true);
       const roles = await fetchSigleItem<Role[]>("/fetch_single_role", id);
       const data = roles && roles.length > 0 ? roles[0] : undefined;
       if (!data) {
+        setLoading(false);
         setError("Rôle introuvable.");
+        setLoading(false);
         return;
       }
       // console.log(data);
       setFormData(data);
       setIsEditing(true);
       setShowModal(true);
+      setLoading(false);
 
     } catch (error) {
+      setLoading(false);
       showWarningMessage(error);
     }
   };
@@ -103,11 +108,15 @@ export default function RolePage() {
     });
     if (confirmed) {
       try {
+        setLoading(true);
         const res = await removeItem("/delete_role", id);
+        setLoading(false);
         showSuccessMessage(res);
         loadRoles();
+        
 
       } catch (error) {
+        setLoading(false);
         showErrorMessage(error);
       }
     }
@@ -132,7 +141,7 @@ export default function RolePage() {
   };
 
   return (
-    <div className="container mt-1">
+    <div className="container mt-0">
 
       <h4 className="mb-3">Gestion de privilège</h4>
 
@@ -185,7 +194,7 @@ export default function RolePage() {
             </button>
             <input
               type="text"
-              className="form-control"
+              className="form-control me-2"
               placeholder="Recherche..."
               value={search}
               onChange={(e) => {
@@ -193,6 +202,7 @@ export default function RolePage() {
                 setCurrentPage(1);
               }}
             />
+            <LoadingSpinner loading={loading} />
           </div>
         </div>
 

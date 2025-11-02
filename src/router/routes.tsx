@@ -6,14 +6,41 @@ import AdminLayout from "../layout/AdminLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import RoleList from "../pages/roles/RoleList";
 import Login from "../pages/Login";
+import UserProfile from "../pages/profil/UserProfile";
+import NotFoundPage from "../pages/NotFoundPage";
+import SitePage from "../pages/site/SitePage";
 
 export default function AppRoutes() {
     return (
         <Routes>
             <Route path="/login" element={<Login />} />
-            {/* non autorisé */}
-            <Route path="/unauthorized" element={<div className="p-4">Accès refusé.</div>} />
 
+            {/* Accès refusé */}
+            <Route
+                path="/unauthorized"
+                element={<div className="p-4 text-center text-danger fw-bold">Accès refusé 🚫</div>}
+            />
+
+            {/* Routes protégées */}
+            <Route
+                path="profil"
+                element={
+                    <RoleGuard
+                        allowed={[
+                            ROLES.SUPER_ADMIN,
+                            ROLES.ADMIN,
+                            ROLES.ENSEIGNANT,
+                            ROLES.COMPTABLE,
+                            ROLES.SECRETAIRE,
+                            ROLES.AUDITEUR,
+                        ]}
+                    >
+                        <UserProfile />
+                    </RoleGuard>
+                }
+            />
+
+            {/* interfaces superadmin */}
             <Route
                 path="/"
                 element={
@@ -24,7 +51,6 @@ export default function AppRoutes() {
             >
                 <Route index element={<Dashboard />} />
 
-                {/* Ex: Rôles réservés au SUPER_ADMIN */}
                 <Route
                     path="roles"
                     element={
@@ -33,9 +59,24 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+                <Route
+                    path="systeme"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <SitePage />
+                        </RoleGuard>
+                    }
+                />
 
-                {/* Ajoute ici toutes les autres routes, avec RoleGuard si besoin */}
+
+
+
+
+                {/* Toutes les autres routes protégées */}
             </Route>
+
+            {/* Page 404 (doit être à la fin) */}
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
 }

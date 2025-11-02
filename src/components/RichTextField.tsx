@@ -35,18 +35,16 @@ export default function RichTextField({
         <div className="mb-3">
             {label && <label className="form-label">{label}</label>}
             <div className="input-group">
-                <div className="input-group-prepend">
-                    <span className="input-group-text">
-                        <i className={icon}></i>
-                    </span>
-                </div>
+                <span className="input-group-text">
+                    <i className={icon}></i>
+                </span>
                 <div className="form-control form-control-sm bg-white text-dark dark:bg-zinc-800 dark:text-white p-0" 
                 style={{ minHeight: '144px' }}>
                     <Editor
                         value={value}
                         onTextChange={(e) => handleEditorChange(e.htmlValue || '')}
                         placeholder={placeholder}
-                        style={{ height: '100px', minHeight: '10px', maxHeight: '150px' }}
+                        // style={{ height: '50px', minHeight: '10px', maxHeight: '50px' }}
                         
                     />
                 </div>
