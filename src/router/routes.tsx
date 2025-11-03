@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import UserProfile from "../pages/profil/UserProfile";
 import NotFoundPage from "../pages/NotFoundPage";
 import SitePage from "../pages/site/SitePage";
+import UserPage from "../pages/user/UserPage";
 
 export default function AppRoutes() {
     return (
@@ -67,6 +68,18 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="users"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <UserPage />
+                        </RoleGuard>
+                    }
+                />
+
+
+                
 
 
 

@@ -138,6 +138,13 @@ export const fetchSigleItem = async <T>(url: string, id: number | string): Promi
     return response.data.data;
 };
 
+// 🔹 Récupérer une liste
+export const fetchListItems = async <T>(endpoint: string) => {
+    const res = await api.get(`${endpoint}`);
+    return res.data;
+};
+
+
 // 🔹 Ajouter ou mettre à jour un élément
 export const saveItem = async <T>(url: string, data: any): Promise<T> => {
     const response = await api.post(url, data);
