@@ -20,11 +20,11 @@ export const MENU: MenuItem[] = [
         label: "Statistiques & Gestion",
         icon: "bar-chart-2",
         children: [
-            { label: "Tableau de bord", to: "/dashboard" },
+            { label: "Tableau de bord", to: "/statistiques/dashboard" },
             { label: "Élèves par option", to: "/statistiques/eleves" },
             { label: "Paiements mensuels", to: "/statistiques/paiements" },
-            { label: "Paiements par option", to: "/statistiques/paiements-option" },
-            { label: "Paiements par classe", to: "/statistiques/paiements-classe" },
+            // { label: "Paiements par option", to: "/statistiques/paiements-option" },
+            // { label: "Paiements par classe", to: "/statistiques/paiements-classe" },
         ],
     },
 

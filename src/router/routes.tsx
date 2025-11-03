@@ -10,6 +10,8 @@ import UserProfile from "../pages/profil/UserProfile";
 import NotFoundPage from "../pages/NotFoundPage";
 import SitePage from "../pages/site/SitePage";
 import UserPage from "../pages/user/UserPage";
+import StatInscription from "../pages/dashboard/StatInscription";
+import StatPaiement from "../pages/dashboard/StatPaiement";
 
 export default function AppRoutes() {
     return (
@@ -77,6 +79,37 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="statistiques/dashboard"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <Dashboard />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="statistiques/eleves"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <StatInscription />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="statistiques/paiements"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <StatPaiement />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                
 
 
                 
