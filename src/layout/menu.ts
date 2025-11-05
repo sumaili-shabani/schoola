@@ -28,6 +28,66 @@ export const MENU: MenuItem[] = [
         ],
     },
 
+    // 🌍 GÉOGRAPHIE ET PARAMÈTRES AVANCÉS
+    {
+        label: "Système & Configuration",
+        icon: "settings",
+        roles: [ROLES.SUPER_ADMIN],
+        children: [
+            // 📘 COMPTABILITÉ OHADA
+            {
+                label: "Comptabilité OHADA",
+                icon: "file-text",
+                roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+                children: [
+                    { label: "Classes", to: "/ohada/classes" },
+                    { label: "Comptes", to: "/ohada/comptes" },
+                    { label: "Sous Comptes", to: "/ohada/sous-comptes" },
+                    { label: "SSous Comptes", to: "/ohada/ssous-comptes" },
+                    { label: "Type Compte", to: "/ohada/type-compte" },
+                    { label: "Type Position", to: "/ohada/type-position" },
+                    { label: "Type Opération", to: "/ohada/type-operation" },
+                    { label: "Journaux", to: "/ohada/journaux" },
+                    { label: "Balance Générale", to: "/ohada/balance" },
+                    { label: "Grand Livre", to: "/ohada/grand-livre" },
+                    { label: "États Financiers", to: "/ohada/etat-financier" },
+
+                ],
+            },
+
+            {
+                label: "Trésorerie",
+                icon: "credit-card",
+                roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+                children: [
+
+                    { label: "Config. Taux", to: "/ohada/config-taux" },
+                    { label: "Rubriques", to: "/ohada/rubriques" },
+                    { label: "Caisse & Banque", to: "/ohada/caisse-banque" },
+                    { label: "Mode de Paiement", to: "/ohada/mode-paiement" },
+
+                ],
+            },
+
+            {
+                label: "Localisation",
+                icon: "file-text",
+                roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+                children: [
+                    { label: "Pays", to: "/geo/pays" },
+                    { label: "Provinces", to: "/geo/ville" },
+                    { label: "Commune", to: "/geo/commune" },
+                    { label: "Quartier", to: "/geo/quartier" },
+                    { label: "Avenue", to: "/geo/avenue" },
+                ],
+            },
+
+            { label: "Établissements", to: "/system/ecoles" },
+            { label: "Sauvegardes", to: "/system/backup" },
+            { label: "Logs système", to: "/system/logs" },
+        ],
+    },
+
     // 🏫 GESTION SCOLAIRE
     {
         label: "École & Élèves",
@@ -147,17 +207,5 @@ export const MENU: MenuItem[] = [
         ],
     },
 
-    // 🌍 GÉOGRAPHIE ET PARAMÈTRES AVANCÉS
-    {
-        label: "Système & Configuration",
-        icon: "settings",
-        roles: [ROLES.SUPER_ADMIN],
-        children: [
-            { label: "Pays & Provinces", to: "/geo/pays" },
-            { label: "Villes & Communes", to: "/geo/villes" },
-            { label: "Établissements", to: "/system/ecoles" },
-            { label: "Sauvegardes", to: "/system/backup" },
-            { label: "Logs système", to: "/system/logs" },
-        ],
-    },
+  
 ];

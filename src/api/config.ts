@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 export const fileUrl = process.env.REACT_APP_FILE_URL;
 
 export const API_CONFIG = {
-    baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",
-    fileURL: process.env.REACT_APP_FILE_URL || "http://localhost:8000",
+    baseURL: process.env.REACT_APP_API_URL || "http://localhost:8001/api",
+    fileURL: process.env.REACT_APP_FILE_URL || "http://localhost:8001",
     timeout: 30000, // 30 secondes
 };
 

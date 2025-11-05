@@ -489,7 +489,7 @@ export default function SitePage() {
                                     label="A propos"
                                     placeholder="A propos"
                                     icon="fas fa-text-width"
-                                    rows={2}
+                                    
 
                                 />
                             </div>
@@ -501,7 +501,7 @@ export default function SitePage() {
                                     label="Mission"
                                     placeholder="Mission"
                                     icon="fas fa-text-width"
-                                    rows={2}
+                                    
 
                                 />
                             </div>
@@ -514,7 +514,7 @@ export default function SitePage() {
                                     label="Objectif"
                                     placeholder="Objectif"
                                     icon="fas fa-text-width"
-                                    rows={2}
+                                    
 
                                 />
                             </div>
@@ -527,7 +527,7 @@ export default function SitePage() {
                                     label="Politique de protection des données"
                                     placeholder="Politique de protection des données"
                                     icon="fas fa-text-width"
-                                    rows={2}
+                                    
 
                                 />
                             </div>
@@ -540,7 +540,7 @@ export default function SitePage() {
                                     label="Condition d'utilisation"
                                     placeholder="Condition d'utilisation"
                                     icon="fas fa-text-width"
-                                    rows={2}
+                                    
 
                                 />
                             </div>
@@ -552,7 +552,7 @@ export default function SitePage() {
                                     onChange={handleInputChange}
                                     label="Description complète"
                                     placeholder="Description complète du site"
-                                    rows={2}
+                                    
 
                                 />
                             </div>

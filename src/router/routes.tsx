@@ -12,6 +12,11 @@ import SitePage from "../pages/site/SitePage";
 import UserPage from "../pages/user/UserPage";
 import StatInscription from "../pages/dashboard/StatInscription";
 import StatPaiement from "../pages/dashboard/StatPaiement";
+import ProvincePage from "../pages/localisation/Province";
+import QuartierPage from "../pages/localisation/Quartier";
+import Commune from "../pages/localisation/Commune";
+import Pays from "../pages/localisation/Pays";
+import AvenuePage from "../pages/localisation/Avenue";
 
 export default function AppRoutes() {
     return (
@@ -106,6 +111,67 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                {/* localisation */}
+                <Route
+                    path="geo/ville"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <ProvincePage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="geo/quartier"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <QuartierPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="geo/commune"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <Commune />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="geo/pays"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <Pays />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="geo/avenue"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <AvenuePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="system/ecoles"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                            <SitePage />
+                        </RoleGuard>
+                    }
+                />
+
+
+                
+
+               
+                
+                
+                
 
                 
 

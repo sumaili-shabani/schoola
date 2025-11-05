@@ -38,12 +38,10 @@ export default function SelectPickerField({
     return (
         <div className="mb-3">
             {label && <label className="form-label">{label}</label>}
-            <div className="input-group mb-3 align-items-center">
-                <div className="input-group-prepend" style={{ minHeight:'36px' }}>
-                    <span className="input-group-text">
-                        <i className={icon}></i>
-                    </span>
-                </div>
+            <div className="input-group mb-3" style={{ width: "100%" }}>
+                <span className="input-group-text">
+                    <i className={icon}></i>
+                </span>
                 <div style={{ flexGrow: 1 }}>
                     <Select
                         name={name}
@@ -55,7 +53,7 @@ export default function SelectPickerField({
                         required={required}
                         classNamePrefix="react-select"
                         className="react-select"
-                      
+
                     />
                 </div>
             </div>

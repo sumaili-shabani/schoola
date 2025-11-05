@@ -39,7 +39,7 @@ function LayoutInner() {
                     </div>
                 </main>
 
-                <footer className="footer">
+                {/* <footer className="footer">
                     <div className="container-fluid">
                         <div className="row text-muted">
                             <div className="col-6 text-start">
@@ -54,7 +54,7 @@ function LayoutInner() {
                             </div>
                         </div>
                     </div>
-                </footer>
+                </footer> */}
             </div>
         </div>
     );

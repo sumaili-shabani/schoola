@@ -48,3 +48,92 @@ body.dark .btn-outline-primary {
   color: #f8f9fa;
   border-color: #007bff;
 }
+
+select.form-control {
+  width: 100% !important;
+}
+
+/* Force Choices.js to occupy full width */
+.choices {
+  width: 100% !important;
+}
+
+/* Internal box */
+.choices__inner {
+  width: 100% !important;
+  min-height: 40px;
+  /* comme form-select */
+  display: flex;
+  align-items: center;
+}
+
+/* Make selected item area stretch */
+.choices__list--single {
+  width: 100% !important;
+}
+
+/* Dropdown list width */
+.choices__list--dropdown,
+.choices__list[aria-expanded] {
+  width: 100% !important;
+}
+
+
+
+/* Force le wrapper Choices à se comporter comme un input Bootstrap */
+.input-group .choices {
+  flex: 1 1 auto !important;
+  width: 1% !important;
+}
+
+/* Aligne verticalement comme un input */
+.choices__inner {
+  min-height: 38px !important;
+  /* Hauteur standard form-input */
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+
+/* --- Harmonisation des champs SelectPicker avec input-group-text --- */
+.input-group .input-group-text {
+  height: 38px;
+  /* même hauteur qu’un input Bootstrap standard */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  /* légère couleur grise Bootstrap */
+  border: 1px solid #ced4da;
+  border-right: 0;
+  /* pour fusionner visuellement avec le champ */
+}
+
+/* --- Aligne parfaitement react-select avec l’input-group --- */
+.input-group .react-select__control {
+  height: 38px !important;
+  min-height: 38px !important;
+  border-radius: 0 0.25rem 0.25rem 0 !important;
+  border-left: 0 !important;
+  box-shadow: none !important;
+}
+
+/* --- Ajuste le texte du placeholder et la taille générale --- */
+.react-select__single-value,
+.react-select__placeholder {
+  font-size: 0.9rem;
+  padding-left: 2px;
+}
+
+/* --- Supprime les marges internes du container react-select --- */
+.react-select {
+  width: 100%;
+}
+
+/* --- Corrige l’alignement vertical global --- */
+.input-group {
+  align-items: stretch;
+}
+
+

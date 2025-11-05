@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './config/i18n';
+import 'choices.js/public/assets/styles/choices.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

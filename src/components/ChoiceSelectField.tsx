@@ -11,9 +11,7 @@ interface ChoiceOption {
 
 interface ChoiceSelectFieldProps {
     name: string;
-    /** valeur contrôlée : string|number en simple, array en multiple */
     value: SingleValue | MultiValue;
-    /** onChange reçoit string|number (simple) ou array (multiple) */
     onChange: (value: SingleValue | MultiValue) => void;
     placeholder?: string;
     icon?: string;
@@ -22,10 +20,7 @@ interface ChoiceSelectFieldProps {
     options: ChoiceOption[];
     isMultiple?: boolean;
     disabled?: boolean;
-
-    /** Recherche Choices.js (true par défaut = auto recherche activée) */
     searchEnabled?: boolean;
-    /** Texte du champ de recherche (optionnel) */
     searchPlaceholderValue?: string;
 }
 
@@ -40,79 +35,79 @@ export default function ChoiceSelectField({
     options,
     isMultiple = false,
     disabled = false,
-    searchEnabled = true,            // ✅ active la recherche
-    searchPlaceholderValue,          // optionnel
+    searchEnabled = true,
+    searchPlaceholderValue,
 }: ChoiceSelectFieldProps) {
     const selectRef = useRef<HTMLSelectElement | null>(null);
     const choicesRef = useRef<Choices | null>(null);
 
-    // -- Helpers pour convertir vers/depuis <select> HTML (qui n'accepte que string ou string[])
-    const toDomValue = (val: SingleValue | MultiValue): string | string[] => {
-        if (Array.isArray(val)) return val.map(v => String(v));
-        return String(val ?? "");
-    };
     const isSelected = (optVal: SingleValue): boolean => {
         if (Array.isArray(value)) return value.map(String).includes(String(optVal));
         return String(value ?? "") === String(optVal);
     };
 
-    // Initialisation de Choices.js
+    // Init Choices
     useEffect(() => {
         if (!selectRef.current) return;
 
-        choicesRef.current = new Choices(selectRef.current, {
-            searchEnabled,                    // ✅ recherche activée
+        const element = selectRef.current;
+
+        const choices = new Choices(element, {
+            searchEnabled,
             searchPlaceholderValue,
             itemSelectText: "",
-            removeItemButton: isMultiple,     // bouton de suppression pour multiple
+            removeItemButton: isMultiple,
             placeholder: true,
             placeholderValue: placeholder,
             shouldSort: false,
-            duplicateItemsAllowed: false,
+            allowHTML: false,
         });
 
+        choicesRef.current = choices;
+
+        // Add listener DOM
+        const handler = (e: any) => {
+            const target = e.target as HTMLSelectElement;
+            if (isMultiple) {
+                const vals = Array.from(target.selectedOptions).map(o => o.value);
+                onChange(vals);
+            } else {
+                onChange(target.value);
+            }
+        };
+        element.addEventListener("change", handler);
+
         return () => {
-            choicesRef.current?.destroy();
+            element.removeEventListener("change", handler);
+            try { choices.destroy(); } catch { }
             choicesRef.current = null;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isMultiple, placeholder, searchEnabled, searchPlaceholderValue]);
+    }, []);
 
-    // Mettre à jour les options + sélection à chaque changement de props
+    // Sync options + selection
     useEffect(() => {
-        if (!choicesRef.current) return;
+        const inst = choicesRef.current;
+        if (!inst) return;
 
-        // Remet la liste des choix en respectant la sélection courante
-        choicesRef.current.clearChoices();
-        choicesRef.current.setChoices(
-            options.map((opt) => ({
-                value: String(opt.value),
-                label: opt.label,
-                selected: isSelected(opt.value),
-                disabled: false,
-                customProperties: {},
-            })),
-            "value",
-            "label",
-            true
-        );
-    }, [options, value]); // quand options ou value changent, on resynchronise
-
-    // Gestion du changement (simple/multiple)
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        if (isMultiple) {
-            const vals = Array.from(e.target.selectedOptions).map(o => o.value);
-            // on retourne un tableau (string[])
-            onChange(vals);
-        } else {
-            onChange(e.target.value);
-        }
-    };
+        try {
+            inst.clearChoices();
+            inst.setChoices(
+                options.map(opt => ({
+                    value: String(opt.value),
+                    label: opt.label,
+                    selected: isSelected(opt.value),
+                })),
+                "value",
+                "label",
+                true
+            );
+        } catch { }
+    }, [options, value]);
 
     return (
-        <div className="mb-3">
+        <div className="mb-3 w-100">
             {label && <label className="form-label">{label}</label>}
-            <div className="input-group">
+            <div className="input-group" style={{ width: "100%" }}>
                 {icon && (
                     <span className="input-group-text">
                         <i className={icon}></i>
@@ -125,16 +120,10 @@ export default function ChoiceSelectField({
                     required={required}
                     multiple={isMultiple}
                     disabled={disabled}
-                    // IMPORTANT : <select> DOM attend string ou string[]
-                    value={toDomValue(value)}
-                    onChange={handleChange}
-                    className="form-select form-control"
+                    className="form-select w-100"
+                    style={{ width: "100%" }}
                 >
-                    {!isMultiple && (
-                        <option value="" disabled>
-                            {placeholder}
-                        </option>
-                    )}
+                    {!isMultiple && <option value="">{placeholder}</option>}
                     {options.map((opt, idx) => (
                         <option key={idx} value={String(opt.value)}>
                             {opt.label}
