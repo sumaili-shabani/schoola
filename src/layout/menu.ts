@@ -47,11 +47,7 @@ export const MENU: MenuItem[] = [
                     { label: "Type Compte", to: "/ohada/type-compte" },
                     { label: "Type Position", to: "/ohada/type-position" },
                     { label: "Type Opération", to: "/ohada/type-operation" },
-                    // { label: "Journaux", to: "/ohada/journaux" },
-                    // { label: "Balance Générale", to: "/ohada/balance" },
-                    // { label: "Grand Livre", to: "/ohada/grand-livre" },
-                    // { label: "États Financiers", to: "/ohada/etat-financier" },
-
+                
                 ],
             },
 
@@ -65,6 +61,11 @@ export const MENU: MenuItem[] = [
                     { label: "Rubriques", to: "/ohada/rubriques" },
                     { label: "Caisse & Banque", to: "/ohada/caisse-banque" },
                     { label: "Mode de Paiement", to: "/ohada/mode-paiement" },
+
+                    { label: "Categorie de rubrique", to: "/ohada/cat-rubriques" },
+                    { label: "Rubriques EB", to: "/ohada/eb-rubriques" },
+                    { label: "Bloc", to: "/ohada/bloc" },
+                    { label: "Service", to: "/ohada/service" },
 
                 ],
             },
@@ -81,7 +82,18 @@ export const MENU: MenuItem[] = [
                     { label: "Avenue", to: "/geo/avenue" },
                 ],
             },
-
+            {
+                label: "Paiement et frais",
+                icon: "dollar-sign",
+                roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+                children: [
+                    { label: "Tranches", to: "/ecole/tranche" },
+                    { label: "Frais", to: "/ecole/frais" },
+                    { label: "Prévision", to: "/ecole/prevision" },
+                    
+                ],
+            },
+            { label: "Catégorie des produits", to: "/vente/category-product" },
             { label: "Établissements", to: "/system/ecoles" },
             { label: "Sauvegardes", to: "/system/backup" },
             { label: "Logs système", to: "/system/logs" },

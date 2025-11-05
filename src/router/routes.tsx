@@ -25,6 +25,17 @@ import ClaaseOhadaPage from "../pages/ohada/ClasseOhata";
 import CompteOhadaPage from "../pages/ohada/CompteOhadaPage";
 import SousCompteOhadaPage from "../pages/ohada/SCompte";
 import SSousCompteOhadaPage from "../pages/ohada/SSousCompteOhadaPage";
+import ModePaiementPage from "../pages/finances/ModePaiementPage";
+import BanqueOhadaPage from "../pages/finances/BanqueOhadaPage";
+import RubriqueOhadaPage from "../pages/finances/RubriqueOhadaPage";
+import CategorieRubriquePage from "../pages/finances/CategorieRubriquePage";
+import RubriquePage from "../pages/finances/RubriquePage";
+import BlocPage from "../pages/ohada/BlocPage";
+import ProvenancePage from "../pages/ohada/ProvenancePage";
+import CategorieProduitPage from "../pages/finances/CategorieProduitPage";
+import TranchePage from "../pages/ecole/TranchePage";
+import FraisPage from "../pages/ecole/FraisPage";
+import PrevisionPage from "../pages/ecole/PrevisionPage";
 
 export default function AppRoutes() {
     return (
@@ -245,6 +256,127 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+                {/* confiruation finance */}
+
+                <Route
+                    path="ohada/mode-paiement"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ModePaiementPage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="ohada/caisse-banque"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <BanqueOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/rubriques"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RubriqueOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/cat-rubriques"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CategorieRubriquePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/eb-rubriques"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RubriquePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/bloc"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <BlocPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/service"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ProvenancePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="vente/category-product"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CategorieProduitPage />
+                        </RoleGuard>
+                    }
+                />
+
+                {/* ecole */}
+                <Route
+                    path="ecole/tranche"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <TranchePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/frais"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <FraisPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/prevision"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <PrevisionPage />
+                        </RoleGuard>
+                    }
+                />
+
+
+                
+                
+
+                
+
+              
+
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
 
                 
 
