@@ -23,8 +23,9 @@ export const getToken = (): string | null => {
     return localStorage.getItem(TOKEN_KEY);
 };
 
-export const getUser = (): object |string | null | any=> {
-    return localStorage.getItem("user");
+export const getUser = () => {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
 };
 
 

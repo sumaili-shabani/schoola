@@ -17,6 +17,14 @@ import QuartierPage from "../pages/localisation/Quartier";
 import Commune from "../pages/localisation/Commune";
 import Pays from "../pages/localisation/Pays";
 import AvenuePage from "../pages/localisation/Avenue";
+import TypeOperationPage from "../pages/ohada/TypeOperation";
+import TypePositionPage from "../pages/ohada/TypePosition";
+import TauxPage from "../pages/ohada/TauxPage";
+import TypeComptePage from "../pages/ohada/TypeCompteOhata";
+import ClaaseOhadaPage from "../pages/ohada/ClasseOhata";
+import CompteOhadaPage from "../pages/ohada/CompteOhadaPage";
+import SousCompteOhadaPage from "../pages/ohada/SCompte";
+import SSousCompteOhadaPage from "../pages/ohada/SSousCompteOhadaPage";
 
 export default function AppRoutes() {
     return (
@@ -164,6 +172,95 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                {/* taux */}
+
+                <Route
+                    path="ohada/type-operation"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <TypeOperationPage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="ohada/type-position"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <TypePositionPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/config-taux"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <TauxPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/type-compte"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <TypeComptePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/classes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ClaaseOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/comptes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CompteOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/sous-comptes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <SousCompteOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ohada/ssous-comptes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <SSousCompteOhadaPage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                
+
+                
+
+                
+
+               
+
+                
+
+                
+
+                
 
 
                 
