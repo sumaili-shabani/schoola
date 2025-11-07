@@ -39,6 +39,7 @@ interface Prevision {
     nomSection?: string;
     nomOption?: string;
     nomClasse?: string;
+    designation?: string;
 
 
 
@@ -158,18 +159,18 @@ export default function PrevisionPage() {
 
 
     const loadOptionsBySection = async (idSection: string | number) => {
-            if (!idSection) {
-                setOptionOptions([]);
-                return;
-            }
+        if (!idSection) {
+            setOptionOptions([]);
+            return;
+        }
         const res = await fetchListItems(`/fetch_option_by_section/${idSection}`);
-            setOptionOptions(
-                res.data.map((x: any) => ({
-                    value: String(x.id),
-                    label: x.nomOption,
-                }))
-            );
-        };
+        setOptionOptions(
+            res.data.map((x: any) => ({
+                value: String(x.id),
+                label: x.nomOption,
+            }))
+        );
+    };
 
     // -------- CHARGEMENT DES DONNÉES --------
     const loadDatas = async () => {
@@ -321,6 +322,7 @@ export default function PrevisionPage() {
             <table className="table table-striped">
                 <thead>
                     <tr>
+                       
                         <th>Tranche</th>
                         <th>Frais</th>
                         <th>Section / Option</th>
@@ -334,9 +336,13 @@ export default function PrevisionPage() {
                 <tbody>
                     {datas.map((d) => (
                         <tr key={d.id}>
-
-
-                            <td>{d.nomTranche}</td>
+                          
+                            <td>
+                                {d.nomTranche} <br />
+                                <span className="badge bg-success">
+                                    {d.designation}
+                                </span>
+                            </td>
                             <td>{d.nomTypeTranche}</td>
 
                             <td>

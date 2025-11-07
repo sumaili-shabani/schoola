@@ -36,6 +36,21 @@ import CategorieProduitPage from "../pages/finances/CategorieProduitPage";
 import TranchePage from "../pages/ecole/TranchePage";
 import FraisPage from "../pages/ecole/FraisPage";
 import PrevisionPage from "../pages/ecole/PrevisionPage";
+import ClassePage from "../pages/ecole/ClassePage";
+import AnneeScolairePage from "../pages/ecole/AnneeScolaire";
+import DivisionPage from "../pages/ecole/DivisionPage";
+import OptionPage from "../pages/ecole/Options";
+import SectionPage from "../pages/ecole/SectionPage";
+import MoisScolairePage from "../pages/ecole/MoisScolaire";
+import ElevePage from "../pages/reception/ElevePage";
+import InscriptionPage from "../pages/reception/InscriptionPage";
+import PaiementPage from "../pages/paiement/PaiementPage";
+import ParentPage from "../pages/reception/ParentPage";
+import RecettePage from "../pages/paiement/RecettePage";
+import PresencePage from "../pages/reception/PresencePage";
+import EffectifPage from "../pages/reception/EffectifPage";
+import PonctualitePage from "../pages/reception/PonctualitePage";
+import DepensePage from "../pages/paiement/DepensePage";
 
 export default function AppRoutes() {
     return (
@@ -356,6 +371,163 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="ecole/classes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ClassePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/annee-scolaire"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <AnneeScolairePage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="ecole/divisions"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <DivisionPage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="ecole/options"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <OptionPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/sections"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <SectionPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/mois-scolaire"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <MoisScolairePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/eleves"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ElevePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/presences"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <PresencePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/cloture-effectif"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <EffectifPage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                
+
+                <Route
+                    path="ecole/parents"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ParentPage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                <Route
+                    path="ecole/inscriptions"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <InscriptionPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="ecole/ponctualite/:codeInscription"
+                    element={
+                        <RoleGuard
+                            allowed={[
+                                ROLES.SUPER_ADMIN,
+                                ROLES.COMPTABLE,
+                                ROLES.CAISSIER,
+                                ROLES.ENSEIGNANT,
+                                ROLES.AUDITEUR,
+                                ROLES.ADMIN,
+                            ]}
+                        >
+                            <PonctualitePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="compta/paiements"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <PaiementPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="tresorerie/recettes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RecettePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="tresorerie/depenses"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <DepensePage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                
+
+                
+
+
+                
 
 
                 

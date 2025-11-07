@@ -7,6 +7,7 @@ interface TextFieldProps {
     placeholder?: string;
     icon?: string;
     required?: boolean;
+    disabled?:boolean;
     label?: string;
     type?:string;
 }
@@ -18,6 +19,7 @@ export default function TextField({
     placeholder = '',
     icon = 'fas fa-text-width',
     required = false,
+    disabled = false,
     label,
     type='text'
 }: TextFieldProps) {
@@ -38,6 +40,7 @@ export default function TextField({
                     onChange={onChange}
                     placeholder={placeholder}
                     required={required}
+                    disabled={disabled}
                 />
             </div>
 

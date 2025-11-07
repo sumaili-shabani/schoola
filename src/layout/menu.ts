@@ -93,6 +93,24 @@ export const MENU: MenuItem[] = [
                     
                 ],
             },
+            {
+                label: "Paramétrages scolaires",
+                icon: "dollar-sign",
+                roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
+                children: [
+                  
+                    { label: "Années scolaires", to: "/ecole/annee-scolaire" },
+                    { label: "Sections", to: "/ecole/sections" },
+                    { label: "Options", to: "/ecole/options" },
+                    { label: "Classes", to: "/ecole/classes" },
+                    { label: "Division", to: "/ecole/divisions" },
+                    { label: "Mois scolaires", to: "/ecole/mois-scolaire" },
+                    { label: "Matières", to: "/ecole/matieres" },
+
+                    // { label: "Horaires & emplois du temps", to: "/ecole/horaires" },
+
+                ],
+            },
             { label: "Catégorie des produits", to: "/vente/category-product" },
             { label: "Établissements", to: "/system/ecoles" },
             { label: "Sauvegardes", to: "/system/backup" },
@@ -109,16 +127,10 @@ export const MENU: MenuItem[] = [
             { label: "Élèves", to: "/ecole/eleves" },
             { label: "Inscriptions", to: "/ecole/inscriptions" },
             { label: "Parents d’élèves", to: "/ecole/parents" },
-            {
-                label: "Paramétrages",
-                children: [
-                    { label: "Années scolaires", to: "/ecole/annees" },
-                    { label: "Sections & Options", to: "/ecole/sections" },
-                    { label: "Classes", to: "/ecole/classes" },
-                    { label: "Matières", to: "/ecole/matieres" },
-                    { label: "Horaires & emplois du temps", to: "/ecole/horaires" },
-                ],
-            },
+            { label: "Présences d’élèves", to: "/ecole/presences" },
+            { label: "Clôture effectif des élèves", to: "/ecole/cloture-effectif" },
+            
+           
         ],
     },
 
@@ -148,6 +160,7 @@ export const MENU: MenuItem[] = [
         icon: "credit-card",
         roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER],
         children: [
+            { label: "Paiements élèves", to: "/compta/paiements" },
             { label: "Recettes", to: "/tresorerie/recettes" },
             { label: "Dépenses", to: "/tresorerie/depenses" },
             { label: "Caisse du jour", to: "/tresorerie/caisse-jour" },
@@ -168,7 +181,7 @@ export const MENU: MenuItem[] = [
         icon: "dollar-sign",
         roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
         children: [
-            { label: "Paiements élèves", to: "/compta/paiements" },
+           
             { label: "Dépenses générales", to: "/compta/depenses" },
             { label: "Budgets & prévisions", to: "/compta/budgets" },
             { label: "Recouvrement forcé", to: "/compta/recouvrement" },
