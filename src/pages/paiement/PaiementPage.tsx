@@ -478,7 +478,7 @@ export default function PaiementPage() {
                                 ) : (
                                     datas.map((row) => (
                                         <tr key={row.id}>
-                                            <td>{row.codePaiement}</td>
+                                            <td>{truncateText(`${row.codePaiement ?? ""}`, 15)}</td>
                                             <td>
                                                 {truncateText(`${row.nomEleve ?? ""} ${row.postNomEleve ?? ""}`, 40)}
                                                 <br />

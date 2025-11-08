@@ -51,6 +51,15 @@ import PresencePage from "../pages/reception/PresencePage";
 import EffectifPage from "../pages/reception/EffectifPage";
 import PonctualitePage from "../pages/reception/PonctualitePage";
 import DepensePage from "../pages/paiement/DepensePage";
+import ClotureCaissePage from "../pages/paiement/ClotureCaissePage";
+import ClotureComptabilitePagePage from "../pages/paiement/ClotureComptabilitePage";
+import FournisseurPage from "../pages/ventes/FournisseurPage";
+import ProduitPage from "../pages/ventes/ProduitPage";
+import RequisitionPage from "../pages/ventes/RequisitionPage";
+import VentePage from "../pages/ventes/VentePage";
+import ApprovisionnementPage from "../pages/ventes/ApprovisionnementPage";
+import RapportComptabilitePage from "../pages/rapport/RapportComptabilitePage";
+import RapportCaisseBanquePage from "../pages/rapport/RapportCaisseBanquePage";
 
 export default function AppRoutes() {
     return (
@@ -519,6 +528,100 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="tresorerie/caisse-jour"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ClotureCaissePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="tresorerie/comptabilite-jour"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ClotureComptabilitePagePage />
+                        </RoleGuard>
+                    }
+                />
+
+                {/* vente */}
+                <Route
+                    path="stock/fournisseurs"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <FournisseurPage />
+                        </RoleGuard>
+                    }
+                />
+                <Route
+                    path="stock/produits"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ProduitPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="stock/etat-besoin"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RequisitionPage />
+                        </RoleGuard>
+                    }
+                />
+
+
+                <Route
+                    path="stock/ventes"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <VentePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="stock/approvisionnements"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <ApprovisionnementPage />
+                        </RoleGuard>
+                    }
+                />
+
+                {/* rapports */}
+                <Route
+                    path="/rapport/finances"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportCaisseBanquePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/rapport/tresorerie"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportComptabilitePage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+                
+
+                
+
+              
+
+                
+
+                
 
                 
 

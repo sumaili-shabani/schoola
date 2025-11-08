@@ -7,6 +7,7 @@ import {
     removeItem,
     showConfirmationDialog,
     formatDateFR,
+    truncateText,
 } from "../../api/callApi";
 import {
     fileUrl,
@@ -426,7 +427,7 @@ export default function DepensePage() {
                                 ) : (
                                     datas.map((row) => (
                                         <tr key={row.id}>
-                                            <td>{row.codeOperation ?? row.id}</td>
+                                            <td>{truncateText(`${row.codeOperation ?? row.id}`, 5)}</td>
                                             <td>{row.montant}</td>
                                             <td>{row.montantLettre}</td>
                                             <td>{row.nom_banque}</td>

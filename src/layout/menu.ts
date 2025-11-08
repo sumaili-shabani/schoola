@@ -28,6 +28,32 @@ export const MENU: MenuItem[] = [
         ],
     },
 
+    // 📦 VENTES & STOCK
+    {
+        label: "Ventes & Stock",
+        icon: "pie-chart", // tu peux adapter l’icône
+        roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER],
+        children: [
+            { label: "Ventes", to: "/stock/ventes" },
+            { label: "Approvisionnements", to: "/stock/approvisionnements" },
+            { label: "État de Besoin", to: "/stock/etat-besoin" },
+            { label: "Produits", to: "/stock/produits" },
+            { label: "Fournisseurs", to: "/stock/fournisseurs" },
+            {
+                label: "Rapports",
+               
+                children: [
+                    { label: "Rapport de stock", to: "/rapport/stocks" },
+                    { label: "Rapports financiers (Recettes & Dépenses)", to: "/rapport/finances" },
+                    { label: "Rapports de Trésorerie", to: "/rapport/tresorerie" },
+                    { label: "Rapport des produits", to: "/stock/rapports/produits" },
+                    { label: "Rapport des fournisseurs", to: "/stock/rapports/fournisseurs" },
+                    { label: "Rapport global", to: "/stock/rapports/global" },
+                ],
+            },
+        ],
+    },
+
     // 🌍 GÉOGRAPHIE ET PARAMÈTRES AVANCÉS
     {
         label: "Système & Configuration",
@@ -95,7 +121,7 @@ export const MENU: MenuItem[] = [
             },
             {
                 label: "Paramétrages scolaires",
-                icon: "dollar-sign",
+                icon: "folder",
                 roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE],
                 children: [
                   
@@ -164,6 +190,7 @@ export const MENU: MenuItem[] = [
             { label: "Recettes", to: "/tresorerie/recettes" },
             { label: "Dépenses", to: "/tresorerie/depenses" },
             { label: "Caisse du jour", to: "/tresorerie/caisse-jour" },
+            { label: "Comptabilité du jour", to: "/tresorerie/comptabilite-jour" },
             {
                 label: "Rapports & Statistiques",
                 children: [
