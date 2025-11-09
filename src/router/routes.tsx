@@ -60,6 +60,16 @@ import VentePage from "../pages/ventes/VentePage";
 import ApprovisionnementPage from "../pages/ventes/ApprovisionnementPage";
 import RapportComptabilitePage from "../pages/rapport/RapportComptabilitePage";
 import RapportCaisseBanquePage from "../pages/rapport/RapportCaisseBanquePage";
+import RapportVenteStockPage from "../pages/rapport/RapportVenteStockPage";
+import RapportInscriptionPage from "../pages/rapport/RapportInscriptionPage";
+import RapportRecouvrementPage from "../pages/rapport/RapportRecouvrementPage";
+import PeriodePage from "../pages/enseignement/PeriodePage";
+import CatCoursPage from "../pages/enseignement/CatCoursPage";
+import CoursPage from "../pages/enseignement/CoursPage";
+import EnseignantPage from "../pages/enseignement/EnseignantPage";
+import PlanificationPage from "../pages/reception/Planification";
+import CotationPage from "../pages/reception/CotationPage";
+import RapportResultatsPage from "../pages/rapport/RapportResultatsPage";
 
 export default function AppRoutes() {
     return (
@@ -611,6 +621,115 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="/rapport/stocks"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportVenteStockPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/rapport/inscriptions"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportInscriptionPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/rapport/paiements"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportRecouvrementPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/rapport/evaluations"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <RapportResultatsPage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                {/* enseignement */}
+                <Route
+                    path="/parametrage/periode"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <PeriodePage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/parametrage/categorie-cours"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CatCoursPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/parametrage/cours"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CoursPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/enseignement/enseignants"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <EnseignantPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/enseignement/planifications"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                       
+                            <PlanificationPage />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
+                    path="/enseignement/evaluations"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <CotationPage />
+                        </RoleGuard>
+                    }
+                />
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+
+                
 
                 
                 

@@ -28,10 +28,26 @@ export const MENU: MenuItem[] = [
         ],
     },
 
+    {
+        label: "Rapports",
+        icon: "file-text",
+
+        children: [
+            { label: "Rapport de stock", to: "/rapport/stocks" },
+            { label: "Rapports financiers (Recettes & Dépenses)", to: "/rapport/finances" },
+            { label: "Rapports de Trésorerie", to: "/rapport/tresorerie" },
+
+            { label: "Rapports sur les inscriptions", to: "/rapport/inscriptions" },
+            { label: "Rapports sur les paiements", to: "/rapport/paiements" },
+            { label: "Rapports sur les evaluations", to: "/rapport/evaluations" },
+
+        ],
+    },
+
     // 📦 VENTES & STOCK
     {
         label: "Ventes & Stock",
-        icon: "pie-chart", // tu peux adapter l’icône
+        icon: "shopping-bag", // tu peux adapter l’icône
         roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER],
         children: [
             { label: "Ventes", to: "/stock/ventes" },
@@ -39,18 +55,7 @@ export const MENU: MenuItem[] = [
             { label: "État de Besoin", to: "/stock/etat-besoin" },
             { label: "Produits", to: "/stock/produits" },
             { label: "Fournisseurs", to: "/stock/fournisseurs" },
-            {
-                label: "Rapports",
-               
-                children: [
-                    { label: "Rapport de stock", to: "/rapport/stocks" },
-                    { label: "Rapports financiers (Recettes & Dépenses)", to: "/rapport/finances" },
-                    { label: "Rapports de Trésorerie", to: "/rapport/tresorerie" },
-                    { label: "Rapport des produits", to: "/stock/rapports/produits" },
-                    { label: "Rapport des fournisseurs", to: "/stock/rapports/fournisseurs" },
-                    { label: "Rapport global", to: "/stock/rapports/global" },
-                ],
-            },
+            
         ],
     },
 
@@ -166,9 +171,20 @@ export const MENU: MenuItem[] = [
         icon: "layers",
         roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.ENSEIGNANT],
         children: [
-            { label: "Cours & Devoirs", to: "/enseignement/cours" },
             { label: "Planification", to: "/enseignement/planifications" },
             { label: "Évaluations", to: "/enseignement/evaluations" },
+            {
+                label: "Paramètrage & ensegnement",
+                children: [
+                    { label: "Période", to: "/parametrage/periode" },
+                    { label: "Cours", to: "/parametrage/cours" },
+                    { label: "Catégorie de cours", to: "/parametrage/categorie-cours" },
+                    { label: "Période", to: "/parametrage/periode" },
+                    { label: "Période", to: "/parametrage/periode" },
+                    { label: "Bulletins scolaires", to: "/parametrage/bulletins" },
+                    { label: "Palmarès", to: "/parametrage/palmares" },
+                ],
+            },
             {
                 label: "Résultats & Bulletins",
                 children: [
@@ -177,6 +193,7 @@ export const MENU: MenuItem[] = [
                     { label: "Palmarès", to: "/resultats/palmares" },
                 ],
             },
+            { label: "Enseignants", to: "/enseignement/enseignants" },
         ],
     },
 

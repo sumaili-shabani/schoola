@@ -30,8 +30,8 @@ interface Site {
     twitter?: string;
     youtube?: string;
     whatsapp?: string;
-    createdAt?: string;
-    updatedAt?: string;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export default function SitePage() {
@@ -660,7 +660,7 @@ export default function SitePage() {
                                                     </li>
                                                 </ul>
                                             </td>
-                                            <td>{formatDateFR(item.createdAt ?? '')} {extractTime(item.createdAt ?? '')}</td>
+                                            <td>{formatDateFR(item.created_at ?? '')} {extractTime(item.created_at ?? '')}</td>
                                             <td>
                                                 <button
                                                     className="btn btn-secondary btn-circle btn-sm me-1"
