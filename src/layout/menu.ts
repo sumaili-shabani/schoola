@@ -185,14 +185,14 @@ export const MENU: MenuItem[] = [
                     { label: "Palmarès", to: "/parametrage/palmares" },
                 ],
             },
-            {
-                label: "Résultats & Bulletins",
-                children: [
-                    { label: "Saisie des notes", to: "/resultats/notes" },
-                    { label: "Bulletins scolaires", to: "/resultats/bulletins" },
-                    { label: "Palmarès", to: "/resultats/palmares" },
-                ],
-            },
+            // {
+            //     label: "Résultats & Bulletins",
+            //     children: [
+            //         { label: "Saisie des notes", to: "/resultats/notes" },
+            //         { label: "Bulletins scolaires", to: "/resultats/bulletins" },
+            //         { label: "Palmarès", to: "/resultats/palmares" },
+            //     ],
+            // },
             { label: "Enseignants", to: "/enseignement/enseignants" },
         ],
     },
@@ -211,9 +211,9 @@ export const MENU: MenuItem[] = [
             {
                 label: "Rapports & Statistiques",
                 children: [
-                    { label: "Rapport mensuel", to: "/tresorerie/rapports/mensuels" },
-                    { label: "Rapport annuel", to: "/tresorerie/rapports/annuels" },
-                    { label: "Analyse financière", to: "/tresorerie/analyse" },
+                    // { label: "Rapport mensuel", to: "/tresorerie/rapports/mensuels" },
+                    // { label: "Rapport annuel", to: "/tresorerie/rapports/annuels" },
+                    { label: "Analyse financière", to: "/rapport/tresorerie" },
                 ],
             },
         ],
@@ -249,10 +249,10 @@ export const MENU: MenuItem[] = [
         label: "Communication",
         icon: "message-circle",
         children: [
-            { label: "Messagerie interne", to: "/messages/inbox" },
-            { label: "Nouveau message", to: "/messages/new" },
             { label: "Communiqués & annonces", to: "/messages/annonces" },
-            { label: "Alertes urgentes", to: "/messages/alertes" },
+            // { label: "Messagerie interne", to: "/messages/inbox" },
+            // { label: "Nouveau message", to: "/messages/new" },
+            // { label: "Alertes urgentes", to: "/messages/alertes" },
         ],
     },
 

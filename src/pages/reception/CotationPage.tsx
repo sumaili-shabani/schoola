@@ -24,6 +24,8 @@ import {
     SelectPickerField,
 } from "../../components";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import CotationMultipleModal from "./CotationMultipleModal";
+import CotationEditMultipleModal from "./CotationEditMultipleModal";
 
 // ========================= Types =========================
 
@@ -65,6 +67,10 @@ interface OptionItem {
 // ========================= Component =========================
 
 export default function CotationPage() {
+
+    const [showMultiModal, setShowMultiModal] = useState(false);
+    const [showEditMultiModal, setShowEditMultiModal] = useState(false);
+    
     // Table
     const [datas, setDatas] = useState<Cotation[]>([]);
     const [loading, setLoading] = useState(false);
@@ -625,6 +631,7 @@ export default function CotationPage() {
         loadDatas();
     };
 
+
     // ========================= Render =========================
 
     return (
@@ -664,9 +671,27 @@ export default function CotationPage() {
                     </div>
                 </div>
 
-                <button className="btn btn-primary btn-sm" onClick={openModal}>
-                    <i className="fas fa-plus me-1" /> Nouvelle cotation
-                </button>
+                <div className="justify-content-end py-1">
+
+                    <button
+                        className="btn btn-success btn-sm me-1 mb-1"
+                        onClick={() => setShowMultiModal(true)}
+                    >
+                        <i className="fas fa-layer-group me-1" /> Saisie multiple
+                    </button>
+
+                    <button
+                        className="btn btn-warning btn-sm me-1 mb-1"
+                        onClick={() => setShowEditMultiModal(true)}
+                    >
+                        <i className="fas fa-pen me-1" /> Modifier les cotes
+                    </button>
+
+                    <button className="btn btn-primary btn-sm mb-1" onClick={openModal}>
+                        <i className="fas fa-plus me-1" /> Nouvelle cotation
+                    </button>
+                </div>
+
             </div>
 
             {/* Tableau */}
@@ -964,6 +989,22 @@ export default function CotationPage() {
                     </div>
                 </form>
             </Modal>
+
+            {showMultiModal && (
+                <CotationMultipleModal
+                    show={showMultiModal}
+                    onClose={() => setShowMultiModal(false)}
+                    onSuccess={()=>{loadDatas()}}
+                />
+            )}
+
+            {showEditMultiModal && (
+                <CotationEditMultipleModal
+                    show={showEditMultiModal}
+                    onClose={() => setShowEditMultiModal(false)}
+                    onSuccess={() => loadDatas()}
+                />
+            )}
         </div>
     );
 }

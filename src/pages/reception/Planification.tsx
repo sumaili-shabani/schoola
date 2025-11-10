@@ -25,6 +25,7 @@ import {
     TextField,
 } from "../../components";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import AttributionCoursMultipleModal from "./AttributionCoursMultipleModal";
 
 
 // ========================= Types =========================
@@ -443,12 +444,12 @@ export default function PlanificationPage() {
 
                 <div className="justify-content-end">
 
-                    {/* <button
+                    <button
                         className="btn btn-sm btn-success me-2"
                         onClick={() => setShowBatchModal(true)}
                     >
                         <i className="fas fa-layer-group me-1"></i> Attribution multiple
-                    </button> */}
+                    </button>
 
                     <button className="btn btn-primary btn-sm" onClick={openModal}>
                         <i className="fas fa-plus me-1" /> Nouvelle attribution
@@ -655,6 +656,14 @@ export default function PlanificationPage() {
                     </div>
                 </form>
             </Modal>
+
+            {showBatchModal && (
+                <AttributionCoursMultipleModal
+                    show={showBatchModal}
+                    onClose={() => setShowBatchModal(false)}
+                    onSuccess={() => { loadDatas() }}
+                />
+            )}
 
 
         </div>

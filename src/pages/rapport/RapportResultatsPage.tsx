@@ -213,6 +213,42 @@ export default function RapportResultatsPage() {
         openReport(`/print_resultat_cotation_par_eleve?idAnne=${idAnne}&idOption=${idOption}&idClasse=${idClasse}&idPeriode=${idPeriode}&idInscription=${idInscription}`);
     };
 
+    //resultat annuel
+    const rapportResultatAnnuelParClasse = () => {
+        const { idAnne, idOption, idClasse, idPeriode } = formData;
+        if (!validateFields("idAnne", "idOption", "idClasse", "idPeriode"))
+            return showWarningMessage("Veuillez remplir tous les champs requis.");
+        openReport(`/print_resultat_annuel_par_classe?idAnne=${idAnne}&idOption=${idOption}&idClasse=${idClasse}&idPeriode=${idPeriode}`);
+    };
+
+    const rapportResultatAnnuelGlobalParClasse = () => {
+        const { idAnne, idOption, idClasse, idPeriode } = formData;
+        if (!validateFields("idAnne", "idOption", "idClasse", "idPeriode"))
+            return showWarningMessage("Veuillez remplir tous les champs requis.");
+        openReport(`/print_resultat_annuel_global_par_classe?idAnne=${idAnne}&idOption=${idOption}&idClasse=${idClasse}&idPeriode=${idPeriode}`);
+    };
+
+    const rapportResultatAnnuelGlobalParEleve = () => {
+        const { idAnne, idOption, idClasse, idPeriode, idInscription } = formData;
+        if (!validateFields("idAnne", "idOption", "idClasse", "idPeriode", "idInscription"))
+            return showWarningMessage("Veuillez remplir tous les champs requis.");
+        openReport(`/print_resultat_annuel_global_par_eleve?idAnne=${idAnne}&idOption=${idOption}&idClasse=${idClasse}&idPeriode=${idPeriode}&idInscription=${idInscription}`);
+    };
+
+
+    const rapportBulletinAnnuelGlobalParEleve = () => {
+        const { idAnne, idOption, idClasse, idPeriode, idInscription } = formData;
+        if (!validateFields("idAnne", "idOption", "idClasse", "idPeriode", "idInscription"))
+            return showWarningMessage("Veuillez remplir tous les champs requis.");
+        openReport(`/print_bulletin_annuel_par_eleve?idAnne=${idAnne}&idOption=${idOption}&idClasse=${idClasse}&idPeriode=${idPeriode}&idInscription=${idInscription}`);
+    };
+
+    
+
+    
+
+    
+
     // === Rendu ===
     return (
         <div className="col-md-12">
@@ -302,6 +338,30 @@ export default function RapportResultatsPage() {
                                     </button>
                                     <button className="btn btn-outline-primary btn-sm" onClick={rapportResultatParEleve}>
                                         Résultats par élève
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <h6 className="text-uppercase text-muted mb-2">
+                                    Résultats & proclamations Annuelle
+                                </h6>
+                                <div className="d-grid gap-2">
+                                    <button className="btn btn-outline-primary btn-sm" onClick={rapportResultatAnnuelParClasse}>
+                                        RÉSULTATS FINAUX DE LA CLASSE
+                                    </button>
+                                   
+                                    <button className="btn btn-outline-dark btn-sm" onClick={rapportResultatAnnuelGlobalParClasse}>
+                                        Cumul global des résultats annuels par période
+                                    </button>
+                                    <button className="btn btn-outline-dark btn-sm" onClick={rapportResultatAnnuelGlobalParEleve}>
+                                        Cumul global des résultats annuels par élève
+                                    </button>
+
+
+                                    
+                                    <button className="btn btn-outline-success btn-sm" onClick={rapportBulletinAnnuelGlobalParEleve}>
+                                        Bulletin annuel par élève
                                     </button>
                                 </div>
                             </div>

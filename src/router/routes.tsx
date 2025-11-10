@@ -70,6 +70,7 @@ import EnseignantPage from "../pages/enseignement/EnseignantPage";
 import PlanificationPage from "../pages/reception/Planification";
 import CotationPage from "../pages/reception/CotationPage";
 import RapportResultatsPage from "../pages/rapport/RapportResultatsPage";
+import MessageScolairePage from "../pages/ecole/MessageScolairePage";
 
 export default function AppRoutes() {
     return (
@@ -715,6 +716,17 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+                <Route
+                    path="/messages/annonces"
+                    element={
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
+                            <MessageScolairePage />
+                        </RoleGuard>
+                    }
+                />
+
+                
 
                 
 
