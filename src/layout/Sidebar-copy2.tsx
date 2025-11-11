@@ -1,60 +1,35 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../auth/useAuth";
 import { hasRole } from "../auth/permissions";
 import { MENU, MenuItem } from "./menu";
 import { useMemo } from "react";
 import SidebarBrand from "./SidebarBrand";
 import { useTheme } from "../context/ThemeContext";
-import { getUser } from "../api/config";
 
 export default function Sidebar() {
-    const user  = getUser();
+    const { user } = useAuth();
     const { theme } = useTheme();
 
-    // ✅ On filtre le menu selon le rôle
+    // ✅ on typpe explicitement la fonction récursive
     const filteredMenu = useMemo<MenuItem[]>(() => {
-        if (!user) return [];
-
-        // 🟩 Si c’est un Comptable ou un Caissier
-        if (user.id_role === 3 || user.id_role === 4) {
-            // On ne garde que les sections utiles pour eux
-            const allowedKeywords = [
-                "/","finance", "compta", "tresorerie", "stock", "ohada", "vente", "rapport", "ecole", "paiement","statistiques"
-            ];
-
-            const filterForComptable = (items: MenuItem[]): MenuItem[] => {
-                return items
-                    .filter((m) => {
-                        // inclut si le label ou le lien correspond à un mot-clé autorisé
-                        const key = (m.label + " " + (m.to || "")).toLowerCase();
-                        return allowedKeywords.some((k) => key.includes(k));
-                    })
-                    .map((m) =>
-                        m.children
-                            ? { ...m, children: filterForComptable(m.children) }
-                            : m
-                    );
-            };
-
-            return filterForComptable(MENU);
-        }
-
-        // 🟦 Cas par défaut : filtrage basé sur les rôles définis dans MENU
-        const filterByRole = (items: MenuItem[]): MenuItem[] => {
+        const filter = (items: MenuItem[]): MenuItem[] => {
             return items
                 .filter((m) => hasRole(user?.id_role, m.roles))
                 .map((m) =>
                     m.children
-                        ? { ...m, children: filterByRole(m.children) }
+                        ? { ...m, children: filter(m.children) } // récursion typée
                         : m
                 );
         };
 
-        return filterByRole(MENU);
+        return filter(MENU);
     }, [user?.id_role]);
 
     return (
         <div className="sidebar-content js-simplebar">
             <SidebarBrand />
+            
+
             <ul className="sidebar-nav" id="sidebar">
                 {filteredMenu.map((item, i) => (
                     <SidebarItem key={i} item={item} parent="sidebar" />

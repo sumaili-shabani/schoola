@@ -84,23 +84,7 @@ export default function AppRoutes() {
             />
 
             {/* Routes protégées */}
-            <Route
-                path="profil"
-                element={
-                    <RoleGuard
-                        allowed={[
-                            ROLES.SUPER_ADMIN,
-                            ROLES.ADMIN,
-                            ROLES.ENSEIGNANT,
-                            ROLES.COMPTABLE,
-                            ROLES.SECRETAIRE,
-                            ROLES.AUDITEUR,
-                        ]}
-                    >
-                        <UserProfile />
-                    </RoleGuard>
-                }
-            />
+           
 
             {/* interfaces superadmin */}
             <Route
@@ -114,6 +98,17 @@ export default function AppRoutes() {
                 <Route index element={<Dashboard />} />
 
                 <Route
+                    path="/profil"
+                    element={
+                        <RoleGuard
+
+                        >
+                            <UserProfile />
+                        </RoleGuard>
+                    }
+                />
+
+                <Route
                     path="roles"
                     element={
                         <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
@@ -121,6 +116,8 @@ export default function AppRoutes() {
                         </RoleGuard>
                     }
                 />
+
+
                 <Route
                     path="systeme"
                     element={
@@ -142,7 +139,7 @@ export default function AppRoutes() {
                 <Route
                     path="statistiques/dashboard"
                     element={
-                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
                             <Dashboard />
                         </RoleGuard>
                     }
@@ -151,7 +148,7 @@ export default function AppRoutes() {
                 <Route
                     path="statistiques/eleves"
                     element={
-                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
                             <StatInscription />
                         </RoleGuard>
                     }
@@ -160,7 +157,7 @@ export default function AppRoutes() {
                 <Route
                     path="statistiques/paiements"
                     element={
-                        <RoleGuard allowed={[ROLES.SUPER_ADMIN]}>
+                        <RoleGuard allowed={[ROLES.SUPER_ADMIN, ROLES.COMPTABLE, ROLES.CAISSIER,]}>
                             <StatPaiement />
                         </RoleGuard>
                     }

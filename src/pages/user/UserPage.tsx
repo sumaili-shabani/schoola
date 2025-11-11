@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchItems, saveItem, removeItem, extractTime, formatDateFR, showConfirmationDialog, truncateText, fetchSigleItem, saveItemImageForm, fetchListItems, } from "../../api/callApi";
 import { usePagination } from "../../hooks/usePagination";
-import { LoaderAndError, Modal, Pagination, RichTextField, TextField } from "../../components";
+import { LoaderAndError, Modal, Pagination, RichTextField, SelectPickerField, TextField } from "../../components";
 import { fileUrl, showErrorMessage, showSuccessMessage, showWarningMessage } from "../../api/config";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import TextAreaFild from "../../components/TextAreaField";
@@ -422,6 +422,17 @@ export default function UserPage() {
                                     required
                                 />
 
+                                {/* <SelectPickerField
+                                    name="id_role"
+                                    value={String(formData.id_role || '')}
+                                    onChange={(v: any) => setFormData((prev) => ({ ...prev, id_role: v === '' || v === null ? undefined : Number(v) }))}
+                                    placeholder="Privilège"
+                                    icon="fas fa-genderless"
+                                    label="Privilège"
+                                    options={roles}
+                                    required
+                                /> */}
+
                             </div>
                             <div className="col-md-12 mb-2">
 
@@ -509,10 +520,21 @@ export default function UserPage() {
                             </div>
 
                             <div className="col-md-6">
-                                <ComboBoxField
+                                {/* <ComboBoxField
                                     name="sexe"
                                     value={formData.sexe || ''}
                                     onChange={handleInputChange}
+                                    placeholder="Sexe"
+                                    icon="fas fa-genderless"
+                                    label="Sexe"
+                                    options={SexeOptions}
+                                    required
+                                /> */}
+
+                                <SelectPickerField
+                                    name="sexe"
+                                    value={formData.sexe || ''}
+                                    onChange={(v) => setFormData((prev) => ({ ...prev, sexe: v }))}
                                     placeholder="Sexe"
                                     icon="fas fa-genderless"
                                     label="Sexe"

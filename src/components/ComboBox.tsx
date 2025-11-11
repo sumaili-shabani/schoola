@@ -25,9 +25,9 @@ export default function ComboBoxField({
         <div className="mb-3">
             {label && <label className="form-label">{label}</label>}
             <div className="input-group mb-3">
-                <span className="input-group-text">
+                {/* <span className="input-group-text">
                     <i className={icon}></i>
-                </span>
+                </span> */}
                 <select
                     name={name}
                     value={value}

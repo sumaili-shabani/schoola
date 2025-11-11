@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UserSettings from './UserSettings';
 import { fileUrl, showSuccessMessage } from '../../api/config';
 
-import { ComboBox, TextField } from '../../components';
+import { ComboBox, SelectPickerField, TextField } from '../../components';
 import { fetchItems, fetchItems2, fetchSigleItem, saveItem, saveItemImageForm } from '../../api/callApi';
 import { showErrorMessage } from '../../api/config';
 import ComboBoxField from '../../components/ComboBox';
@@ -354,10 +354,22 @@ export default function UserProfile() {
                                         />
                                     </div>
                                     <div className="col-md-6 mb-0">
-                                        <ComboBoxField
+                                        {/* <ComboBoxField
                                             name="sexe"
                                             value={formData.sexe || ''}
                                             onChange={handleInputChange}
+                                            label="Sexe"
+                                            icon="fas fa-venus-mars"
+                                            options={[
+                                                { value: 'M', label: 'Homme' },
+                                                { value: 'F', label: 'Femme' }
+                                            ]}
+                                        /> */}
+
+                                        <SelectPickerField
+                                            name="sexe"
+                                            value={formData.sexe || ''}
+                                            onChange={(v) => setFormData((prev) => ({ ...prev, sexe: v }))}
                                             label="Sexe"
                                             icon="fas fa-venus-mars"
                                             options={[

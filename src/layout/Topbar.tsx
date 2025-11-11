@@ -111,7 +111,7 @@ export default function Topbar() {
                             <div className="dropdown-menu-header">2 nouveaux messages</div>
                             <div className="list-group">
                                 <a href="#" className="list-group-item">
-                                    <strong>Prof. Katembo</strong> : Les notes de 3e année sont prêtes
+                                    <strong>Administration</strong> : La saisie des cotes est prête
                                 </a>
                                 <a href="#" className="list-group-item">
                                     <strong>Comptabilité</strong> : Facture école validée

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchItems, saveItem, removeItem, extractTime, formatDateFR, showConfirmationDialog, truncateText, fetchSigleItem, saveItemImageForm, } from "../../api/callApi";
+import { fetchItems, saveItem, removeItem, extractTime, formatDateFR, showConfirmationDialog, truncateText, fetchSigleItem, saveItemImageForm, fetchListItems, } from "../../api/callApi";
 import { usePagination } from "../../hooks/usePagination";
 import { LoaderAndError, Modal, Pagination, RichTextField, TextField } from "../../components";
 import { fileUrl, showErrorMessage, showSuccessMessage, showWarningMessage } from "../../api/config";
@@ -30,6 +30,8 @@ interface Site {
     twitter?: string;
     youtube?: string;
     whatsapp?: string;
+    senderName?:string;
+    smsEtat?:number | string;
     created_at?: string;
     updated_at?: string;
 }
@@ -268,6 +270,14 @@ export default function SitePage() {
     *==========================
     *
     */
+   const changeEtatCompte = async (id: number, etat: number) => {
+           setLoading(true);
+       const res = await fetchListItems(`/checkEtat_Sms/${id}/${etat}`);
+           console.log("res: ", JSON.stringify(res.data));
+           setLoading(false);
+           showSuccessMessage(res.data);
+           loadDatas();
+       }
 
     return (
         <div className="container mt-0">
@@ -408,15 +418,27 @@ export default function SitePage() {
                                 />
                             </div>
 
-                            <div className="col-md-6">
+                            <div className="col-md-3">
                                 <TextField
                                     name="token"
                                     value={formData.token || ''}
                                     onChange={handleInputChange}
-                                    label="Token"
-                                    placeholder="Token"
+                                    label="Token Key SMS"
+                                    placeholder="Token Key SMS"
                                     icon="fas fa-code"
 
+                                />
+                            </div>
+
+                            <div className="col-md-3">
+                                <TextField
+                                    name="senderName"
+                                    value={formData.senderName || ''}
+                                    onChange={handleInputChange}
+                                    placeholder="Nom Destinateur SMS"
+                                    icon="fas fa-envelope"
+                                    label="Sender Name"
+                                    
                                 />
                             </div>
 
@@ -629,6 +651,7 @@ export default function SitePage() {
                                     <th>Adresse</th>
                                     <th>Email</th>
                                     <th>Téléphone principal</th>
+                                    <th>Sms Status</th>
                                     <th>Date de création</th>
                                     <th>Actions</th>
                                 </tr>
@@ -659,6 +682,12 @@ export default function SitePage() {
                                                         <a href={'tel:' + item.tel2} className='text-primary small'>{truncateText(item.tel2 ?? '', 20)}</a>
                                                     </li>
                                                 </ul>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => changeEtatCompte(item.id!, Number(item.smsEtat!))} className={item.smsEtat === 1 ? 'btn btn-success btn-pill  btn-sm' : 'btn btn-danger btn-pill btn-sm'}>
+                                                    <i className={item.smsEtat === 1 ? 'fas fa-check' : 'fas fa-close'}></i> {item.smsEtat === 1 ? 'Actif' : 'Inactif'}
+                                                </button>
+
                                             </td>
                                             <td>{formatDateFR(item.created_at ?? '')} {extractTime(item.created_at ?? '')}</td>
                                             <td>

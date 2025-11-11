@@ -112,7 +112,7 @@ export default function Login() {
                                                     Se souvenir de moi
                                                 </label>
                                             </div>
-                                            <Link to="/forgot" className="small">
+                                            <Link to="#" className="small">
                                                 Mot de passe oublié ?
                                             </Link>
                                         </div>
